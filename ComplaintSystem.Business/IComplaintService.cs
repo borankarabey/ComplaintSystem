@@ -9,7 +9,7 @@ namespace ComplaintSystem.Business
 {
     public interface IComplaintService
     {
-        ICollection<Complaint> GetComplaints();
+        Task <ICollection<Complaint>> GetComplaints();
 
     }
 }

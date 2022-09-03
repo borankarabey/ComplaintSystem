@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ComplaintSystem.Entities
 {
-    public class Complaint
+    public class Complaint : IEntity
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "ID of the complaint can't be Empty!")]

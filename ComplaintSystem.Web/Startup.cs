@@ -1,7 +1,10 @@
 using ComplaintSystem.Business;
+using ComplaintSystem.DataAccess.Data;
+using ComplaintSystem.DataAccess.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +29,10 @@ namespace ComplaintSystem.Web
         {
             services.AddControllersWithViews();
             services.AddScoped<IComplaintService, FakeComplaintService>();
+            services.AddScoped<IComplaintRepository, EFComplaintRepository>();
+
+            var connectionString = Configuration.GetConnectionString("db");
+            services.AddDbContext<ComplaintSystemDbContext>(opt => opt.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
