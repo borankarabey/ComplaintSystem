@@ -22,7 +22,7 @@ namespace ComplaintSystem.DataAccess.Repositories
         {
             await context.Complaints.AddAsync(entity);
             await context.SaveChangesAsync();
-            return entity.Id; 
+            return entity.Id;
         }
 
         public async Task Delete(int id)
@@ -47,10 +47,20 @@ namespace ComplaintSystem.DataAccess.Repositories
             return await context.Complaints.Where(c => c.Name.Contains(name)).ToListAsync();
         }
 
+        public Task<IList<Complaint>> SearchComplaintsByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<int> Update(Complaint entity)
         {
             context.Complaints.Update(entity);
             return await context.SaveChangesAsync();
+        }
+
+        Task IRepository<Complaint>.Update(Complaint entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

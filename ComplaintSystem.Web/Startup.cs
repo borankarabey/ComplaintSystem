@@ -4,6 +4,7 @@ using ComplaintSystem.DataAccess.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ComplaintSystem.Business.Mapper_Profile;
 
 namespace ComplaintSystem.Web
 {
@@ -33,6 +35,7 @@ namespace ComplaintSystem.Web
 
             var connectionString = Configuration.GetConnectionString("db");
             services.AddDbContext<ComplaintSystemDbContext>(opt => opt.UseSqlServer(connectionString));
+            services.AddAutoMapper(typeof(MapProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

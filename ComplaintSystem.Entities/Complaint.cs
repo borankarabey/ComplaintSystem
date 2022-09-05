@@ -15,6 +15,6 @@ namespace ComplaintSystem.Entities
         public string Type { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? Info { get; set; }
-
+        public ICollection<Complaint> Complaints { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

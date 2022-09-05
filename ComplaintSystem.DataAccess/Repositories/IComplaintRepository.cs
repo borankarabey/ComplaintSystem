@@ -9,6 +9,6 @@ namespace ComplaintSystem.DataAccess.Repositories
 {
     public interface IComplaintRepository : IRepository<Complaint>
     {
-        Task<Complaint> SearchComplaintByName(string name);
+        Task<IList<Complaint>> SearchComplaintsByName(string name);
     }
 }

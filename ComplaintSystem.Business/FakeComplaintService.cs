@@ -1,4 +1,5 @@
-﻿using ComplaintSystem.Entities;
+﻿using ComplaintSystem.Dtos.Responses;
+using ComplaintSystem.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,26 @@ namespace ComplaintSystem.Business
             new Complaint { Id = 3, Name = "Samsung TV Modem", Type = "Televizyon" },
             };
         }
+
+        public Task<int> AddComplaint(Complaint complaint)
+        {
+            throw new NotImplementedException();
+        }
+
         public ICollection<Complaint> GetComplaints()
         {
             return complaints;
+        }
+
+        /* Task<ICollection<Complaint>> IComplaintService.GetComplaints()
+        {
+            throw new NotImplementedException();
+        } */
+
+
+        Task<ICollection<ComplaintListResponse>> IComplaintService.GetComplaints()
+        {
+            throw new NotImplementedException();
         }
     }
 }

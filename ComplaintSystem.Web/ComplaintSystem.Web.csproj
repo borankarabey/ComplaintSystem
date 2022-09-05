@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ComplaintSystem.Business\ComplaintSystem.Business.csproj" />
-    <ProjectReference Include="..\ComplaintSystem.DataAccess\ComplaintSystem.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>
