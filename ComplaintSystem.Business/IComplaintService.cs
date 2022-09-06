@@ -14,6 +14,7 @@ namespace ComplaintSystem.Business
         Task<ICollection<ComplaintListResponse>> GetComplaints();
 
         Task<int> AddComplaint(AddComplaintRequest complaint);
-
+        Task<bool> IsExist(int id);
+        Task<ComplaintListResponse> GetComplaintById(int id);
     }
 }

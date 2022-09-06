@@ -42,6 +42,11 @@ namespace ComplaintSystem.DataAccess.Repositories
             return await context.Complaints.FindAsync(id);
         }
 
+        public async Task<bool> IsExists(int id)
+        {
+            return await context.Complaints.AnyAsync(c => c.Id == id);
+        }
+
         public async Task<IList<Complaint>> SearchComplaintByName(string name)
         {
             return await context.Complaints.Where(c => c.Name.Contains(name)).ToListAsync();

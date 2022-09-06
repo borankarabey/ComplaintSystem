@@ -59,5 +59,17 @@ namespace ComplaintSystem.Business
 
             return await complaintRepository.Add(complaint);
         }
+
+        public async Task<bool> IsExist(int id)
+        {
+            return await complaintRepository.IsExists(id);
+        }
+
+        public async Task<ComplaintListResponse> GetComplaintById(int id)
+        {
+            Complaint complaint = await complaintRepository.GetEntityById(id);
+            var response = mapper.Map<ComplaintListResponse>(complaint);
+            return response;
+        }
     }
 }

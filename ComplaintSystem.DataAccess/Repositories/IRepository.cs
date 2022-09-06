@@ -15,6 +15,8 @@ namespace ComplaintSystem.DataAccess.Repositories
         Task Update(T entity);
         Task Delete(int id);
 
+        Task<bool> IsExists(int id);
+
     }
 
 }

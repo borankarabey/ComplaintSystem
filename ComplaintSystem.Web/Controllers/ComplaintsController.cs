@@ -1,5 +1,6 @@
 ﻿using ComplaintSystem.Business;
 using ComplaintSystem.Dtos.Requests;
+using ComplaintSystem.Dtos.Responses;
 using ComplaintSystem.Entities;
 using ComplaintSystem.Web.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -11,15 +12,15 @@ namespace ComplaintSystem.Web.Controllers
 {
     public class ComplaintsController : Controller
     {
-        private readonly IComplaintService complaintservice;
+        private readonly IComplaintService complaintService;
 
         public ComplaintsController(IComplaintService complaintService)
         {
-            this.complaintservice = complaintService;
+            this.complaintService = complaintService;
         }
         public async Task<IActionResult> Index()
         {
-            var complaints = complaintservice.GetComplaints();
+            var complaints = complaintService.GetComplaints();
             return View(complaints);
         }
 
@@ -29,15 +30,31 @@ namespace ComplaintSystem.Web.Controllers
             var selectedItems = new List<SelectListItem>();
             return View();
         }
+
         [HttpPost]
-        public async Task<IActionResult> Create(AddComplaintRequest request)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Name", "Type")] AddComplaintRequest request)
         {
             if (ModelState.IsValid)
             {
-                int addedComplaintId = await complaintService.AddComplaint(request);
+                int addedProductId = await complaintService.AddComplaint(request);
                 return RedirectToAction(nameof(Index));
+
             }
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (await complaintService.IsExist(id))
+            {
+                ComplaintListResponse response = await complaintService.GetComplaintById(id);
+
+                return View(response);
+            }
+
+            return NotFound();
         }
     }
 }
