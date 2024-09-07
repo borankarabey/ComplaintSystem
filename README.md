@@ -1,1 +1,1 @@
-Customer Complaints & Customer Service Sytem for Turkcell Long-Term Internship
+I've created a Customer Complaints & Customer Service Sytem for my Turkcell Long-Term Internship.
